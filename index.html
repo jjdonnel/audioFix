@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jack of All Voices - ACX Audio Corrector</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- MP3 Encoder for ACX Spec (192 kbps CBR) -->
+  <script src="https://cdn.jsdelivr.net/npm/lamejs@1.2.1/lame.min.js"></script>
+</head>
+<body>
+
+<div class="card">
+  <div class="card-header">
+    <h1>ACX Audio Analyzer & Master</h1>
+    <p>Select a WAV or MP3 file to inspect and automatically conform to ACX standards (<em>-20 dB RMS target, -3 dB peak ceiling</em>).</p>
+  </div>
+  
+  <!-- File Input & Action Controls -->
+  <div class="controls-section">
+    <div class="file-upload-wrapper">
+      <label for="audioInput" class="custom-file-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="17 8 12 3 7 8"></polyline>
+          <line x1="12" y1="3" x2="12" y2="15"></line>
+        </svg>
+        <span id="fileLabelText">Choose Audio File...</span>
+      </label>
+      <input type="file" id="audioInput" accept="audio/*">
+    </div>
+
+    <button id="processBtn" class="btn-action" disabled>Analyze & Fix Audio</button>
+  </div>
+
+  <!-- Status Console Bar -->
+  <div class="status-box" id="status">
+    <span class="status-indicator"></span>
+    <span id="statusText">Ready for file input.</span>
+  </div>
+
+  <!-- Metrics Grid Output -->
+  <div class="results" id="metricsDisplay">
+    <div class="metric">
+      <label>Original Peak</label>
+      <span id="origPeak">--</span>
+    </div>
+    <div class="metric">
+      <label>New Peak Target</label>
+      <span class="mint-text">-3.8 dBFS</span>
+    </div>
+
+    <div class="metric">
+      <label>Original RMS</label>
+      <span id="origRMS">--</span>
+    </div>
+    <div class="metric">
+      <label>New RMS Target</label>
+      <span class="mint-text">-23.0 dBFS</span>
+    </div>
+
+    <div class="metric">
+      <label>Est. Noise Floor</label>
+      <span id="origNoise">--</span>
+    </div>
+    <div class="metric">
+      <label>Noise Floor Target</label>
+      <span class="muted-text">&lt; -60.0 dBFS</span>
+    </div>
+  </div>
+
+  <!-- Custom Glassmorphic Audio Player -->
+<div class="custom-player" id="playerContainer">
+  <audio id="audioPreview"></audio>
+  
+  <button id="playPauseBtn" class="player-btn" aria-label="Play/Pause" disabled>
+    <svg id="playIcon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+      <polygon points="5 3 19 12 5 21 5 3"></polygon>
+    </svg>
+    <svg id="pauseIcon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="display: none;">
+      <rect x="6" y="4" width="4" height="16"></rect>
+      <rect x="14" y="4" width="4" height="16"></rect>
+    </svg>
+  </button>
+
+  <span id="currentTime" class="time-display">0:00</span>
+
+  <div class="seek-bar-wrapper">
+    <input type="range" id="seekBar" value="0" min="0" step="0.1" disabled>
+  </div>
+
+  <span id="durationTime" class="time-display">0:00</span>
+</div>
+
+  <!-- Download Link & Button -->
+  <a id="downloadLink" class="download-container">
+    <button class="btn-action btn-download">Download ACX Master (.mp3)</button>
+  </a>
+</div>
+
+<script>
+  // UI Helper to update label when a file is selected
+  const audioInput = document.getElementById('audioInput');
+  const fileLabelText = document.getElementById('fileLabelText');
+  if (audioInput) {
+    audioInput.addEventListener('change', (e) => {
+      if (e.target.files.length > 0) {
+        fileLabelText.textContent = e.target.files[0].name;
+      } else {
+        fileLabelText.textContent = 'Choose Audio File...';
+      }
+    });
+  }
+</script>
+<script src="app.js"></script>
+</body>
+</html>

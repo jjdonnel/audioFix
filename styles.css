@@ -1,0 +1,401 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg-emerald-dark: #0a1a16;
+  --accent-mint: #8be3c9;
+  --accent-mint-hover: #a3ebd7;
+  --glass-bg: rgba(10, 26, 22, 0.75);
+  --glass-border: rgba(139, 227, 201, 0.22);
+  --glass-card-inner: rgba(6, 18, 15, 0.6);
+  --text-primary: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.7);
+  --warning-red: #ff6b6b;
+}
+
+/* Base Document Layout */
+body {
+  margin: 0;
+  padding: 40px 16px;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--text-primary);
+  min-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: 
+    linear-gradient(135deg, rgba(14, 38, 32, 0.88), rgba(10, 26, 22, 0.94)),
+    url('images/studio-bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* Glassmorphic Main Card */
+.card {
+  width: 100%;
+  max-width: 500px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 32px 28px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+/* Typography Header */
+.card-header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+}
+
+.card-header p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.card-header em {
+  color: var(--accent-mint);
+  font-style: normal;
+}
+
+/* Controls Section */
+.controls-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* File Picker Button */
+.file-upload-wrapper input[type="file"] {
+  display: none;
+}
+
+.custom-file-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 13px;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px dashed var(--glass-border);
+  border-radius: 10px;
+  color: var(--accent-mint);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.custom-file-btn:hover {
+  background: rgba(139, 227, 201, 0.08);
+  border-color: var(--accent-mint);
+}
+
+/* General Buttons */
+.btn-action {
+  width: 100%;
+  padding: 14px;
+  background: var(--accent-mint);
+  color: #061410;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-action:hover:not(:disabled) {
+  background: var(--accent-mint-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(139, 227, 201, 0.25);
+}
+
+.btn-action:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--text-muted);
+}
+
+/* Status Console Bar */
+.status-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--glass-card-inner);
+  border: 1px solid rgba(139, 227, 201, 0.15);
+  border-left: 4px solid var(--accent-mint);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-family: monospace;
+  font-size: 0.88rem;
+  color: var(--accent-mint);
+}
+
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent-mint);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--accent-mint);
+  flex-shrink: 0;
+}
+
+/* Results Grid */
+.results {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  background: var(--glass-card-inner);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.metric label {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.metric span {
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: monospace;
+}
+
+.mint-text {
+  color: var(--accent-mint);
+}
+
+.muted-text {
+  color: var(--text-muted);
+}
+
+/* Audio Player Container */
+.audio-wrapper audio {
+  width: 100%;
+  border-radius: 30px;
+  outline: none;
+}
+
+/* Download Action */
+.download-container {
+  text-decoration: none;
+  display: block;
+}
+
+.btn-download {
+  margin-top: 4px;
+}
+
+/* Custom Audio Player Container */
+.custom-player {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(6, 18, 15, 0.7);
+  border: 1px solid var(--glass-border);
+  border-radius: 50px;
+  padding: 10px 18px;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Play/Pause Button */
+.player-btn {
+  background: var(--accent-mint);
+  color: #061410;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.player-btn:hover:not(:disabled) {
+  background: var(--accent-mint-hover);
+  transform: scale(1.05);
+}
+
+.player-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Time Indicators */
+.time-display {
+  font-family: monospace;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  min-width: 34px;
+  text-align: center;
+}
+
+/* Seek Bar Track & Thumb */
+.seek-bar-wrapper {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+.seek-bar-wrapper input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+}
+
+.seek-bar-wrapper input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent-mint);
+  box-shadow: 0 0 8px var(--accent-mint);
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.seek-bar-wrapper input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.seek-bar-wrapper input[type="range"]:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Progress Fill for Range Slider */
+.seek-bar-wrapper input[type="range"] {
+  background: linear-gradient(
+    to right, 
+    var(--accent-mint) 0%, 
+    var(--accent-mint) var(--seek-percent, 0%), 
+    rgba(255, 255, 255, 0.15) var(--seek-percent, 0%), 
+    rgba(255, 255, 255, 0.15) 100%
+  );
+}
+
+/* Warning Metric Accent */
+.metric-value.warning {
+  color: var(--warning-red);
+  text-shadow: 0 0 8px rgba(255, 107, 107, 0.4);
+}
+
+/* --- MOBILE VIEWPORT OPTIMIZATIONS (Max Width 480px) --- */
+@media screen and (max-width: 480px) {
+  body {
+    padding: 12px 10px; /* Reduces outer margin around the card */
+  }
+
+  .card {
+    padding: 18px 16px; /* Tightens internal card padding */
+    gap: 10px; /* Shrinks vertical gaps between sections */
+    border-radius: 16px;
+  }
+
+  /* Compact Typography */
+  .card-header h1 {
+    font-size: 1.25rem;
+    margin-bottom: 4px;
+  }
+
+  .card-header p {
+    font-size: 0.78rem;
+    line-height: 1.35;
+  }
+
+  /* Compact Controls & Console */
+  .custom-file-btn {
+    padding: 8px 12px;
+    font-size: 0.82rem;
+  }
+
+  .btn-action {
+    padding: 10px;
+    font-size: 0.88rem;
+  }
+
+  .status-box {
+    padding: 8px 12px;
+    font-size: 0.78rem;
+  }
+
+  /* Horizontal Grid Layout for Metrics */
+  .results {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two clean columns */
+    gap: 10px 16px;                 /* Vertical and horizontal spacing */
+    padding: 12px;
+  }
+
+  .results > div, 
+  .metric {
+    display: flex !important;
+    flex-direction: column !important; /* Forces label above value */
+    align-items: flex-start;
+  }
+
+  .results label, 
+  .metric label, 
+  .metric-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px; /* Small gap above value */
+    white-space: nowrap;
+  }
+
+  .results span, 
+  .metric span, 
+  .metric-value {
+    font-size: 0.9rem;
+    font-weight: bold;
+    line-height: 1.1;
+  }
+
+  /* Compact Audio Player */
+  .custom-player {
+    padding: 6px 12px;
+    gap: 8px;
+  }
+
+  .player-btn {
+    width: 30px;
+    height: 30px;
+  }
+
+  .time-display {
+    font-size: 0.75rem;
+  }
+}
